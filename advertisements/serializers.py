@@ -36,4 +36,14 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         # само поле при этом объявляется как `read_only=True`
         validated_data["creator"] = self.context["request"].user
         return super().create(validated_data)
-
+    def validate(self, data):
+        request = self.context.get('request')
+        if request.method == 'POST':
+            creator = request.user
+            advertisements = Advertisement.objects.filter(
+                creator=creator,
+                status='OPEN'
+                )
+            if len(advertisements) > 10:
+                raise serializers.ValidationError('Слишком много открытых объявлений')
+        return data

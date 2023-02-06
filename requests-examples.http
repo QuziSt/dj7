@@ -46,3 +46,8 @@ Authorization: Token 8f3d337fe14f3e3e5bc6b224c681ddfe0c83bfd7
 
 DELETE {{baseUrl}}/advertisements/24/
 Authorization: Token 8f3d337fe14f3e3e5bc6b224c681ddfe0c83bfd7
+
+###
+
+GET {{baseUrl}}/advertisements/?status=CLOSED
+Authorization: Token 8f3d337fe14f3e3e5bc6b224c681ddfe0c83bfd7
