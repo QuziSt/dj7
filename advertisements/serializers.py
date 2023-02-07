@@ -38,7 +38,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
     def validate(self, data):
         request = self.context.get('request')
-        if request.method == 'POST':
+        if request.method == 'POST' or data['status'] == 'OPEN':
             creator = request.user
             advertisements = Advertisement.objects.filter(
                 creator=creator,
